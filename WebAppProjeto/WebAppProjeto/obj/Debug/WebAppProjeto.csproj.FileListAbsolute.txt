@@ -235,4 +235,3 @@ C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebA
 C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebAppProjeto\obj\Debug\WebAppProjeto.csproj.CopyComplete
 C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebAppProjeto\obj\Debug\WebAppProjeto.dll
 C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebAppProjeto\obj\Debug\WebAppProjeto.pdb
-C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebAppProjeto\obj\Debug\WebAppProjeto.csproj.AssemblyReference.cache

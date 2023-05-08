@@ -1,7 +1,7 @@
 ﻿@model WebAppProjeto.Models.Fabricante
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -19,16 +19,16 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Nome)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Nome)
             </dd>
-    
+
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.FabricanteId }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Editar", "Edit", new { id = Model.FabricanteId }) |
+        @Html.ActionLink("Voltar para a Lista", "Index")
     </p>
 </body>
 </html>

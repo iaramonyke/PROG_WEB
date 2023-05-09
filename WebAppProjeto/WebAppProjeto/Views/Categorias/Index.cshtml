@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<WebAppProjeto.Models.Categoria>
-
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Listagem de Categorias";
+}
 <p>
     @Html.ActionLink("Criar Nova Categoria", "Create")
 </p>
@@ -11,17 +14,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edita", "Edit", new { id=item.CategoriaId }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.CategoriaId }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.CategoriaId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Edita", "Edit", new { id = item.CategoriaId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.CategoriaId }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.CategoriaId })
+            </td>
+        </tr>
+    }
 
 </table>

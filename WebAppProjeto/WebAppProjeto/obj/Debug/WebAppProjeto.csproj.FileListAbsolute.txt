@@ -239,3 +239,4 @@ C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebA
 =======
 C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebAppProjeto\obj\Debug\WebAppProjeto.csprojAssemblyReference.cache
 >>>>>>> c570963e8bbc1894ff5d39390399906f0cffb30d
+C:\Users\20211011110040\Source\Repos\iaramonyke\PROG_WEB-2023\WebAppProjeto\WebAppProjeto\obj\Debug\WebAppProjeto.csproj.CoreCompileInputs.cache

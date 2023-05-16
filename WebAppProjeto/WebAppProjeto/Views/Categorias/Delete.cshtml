@@ -2,19 +2,11 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-<<<<<<< HEAD
     ViewBag.Title = "Deletando de uma CATEGORIA";
 }
 <div class="panel panel-primary">
     <div class="panel-heading">
         Dados do fabricante a ser removido
-=======
-    ViewBag.Title = "Visualizando detalhes de uma Categoria";
-}
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        Dados de uma Categoria a ser removido
->>>>>>> c570963e8bbc1894ff5d39390399906f0cffb30d
     </div>
     <div class="panel-body">
         <div class="form-group">
@@ -36,18 +28,9 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-<<<<<<< HEAD
             <input type="submit" value="Remover FABRICANTE" class="btn btn-danger" />
-=======
-            <input type="submit" value="Remover Categoria" class="btn btn-danger" />
->>>>>>> c570963e8bbc1894ff5d39390399906f0cffb30d
             @Html.ActionLink("Retornar para a listagem", "Index", null,
             new { @class = "btn btn-info" })
         }
     </div>
-<<<<<<< HEAD
 </div>
-=======
-</div>
-
->>>>>>> c570963e8bbc1894ff5d39390399906f0cffb30d

@@ -1,9 +1,13 @@
 ﻿@model IEnumerable<WebAppProjeto.Models.Categoria>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c570963e8bbc1894ff5d39390399906f0cffb30d
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listagem de Categorias";
 }
+<<<<<<< HEAD
 <div class="panel panel-primary">
     <div class="panel-heading">
         Relação de Categorias registradas
@@ -45,6 +49,32 @@
         @Html.ActionLink("Registrar um nova Categoria", "Create", null, new { @class = "btn btn-success" })
     </div>
 </div>
+=======
+<p>
+    @Html.ActionLink("Criar Nova Categoria", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) 
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Edita", "Edit", new { id = item.CategoriaId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.CategoriaId }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.CategoriaId })
+            </td>
+        </tr>
+    }
+>>>>>>> c570963e8bbc1894ff5d39390399906f0cffb30d
 
 @section styles{
     <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />

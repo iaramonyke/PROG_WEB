@@ -1,70 +1,101 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using WebAppProjeto.Models;
 
 namespace WebAppProjeto.Controllers
 {
-    public class CategoriasController : Controller
-    {
-        private static IList<Categoria> categorias = new List<Categoria>()
-{
-        new Categoria() { CategoriaId = 1, Nome = "Notebooks"},
-        new Categoria() { CategoriaId = 2, Nome = "Monitores"},
-        new Categoria() { CategoriaId = 3, Nome = "Impressoras"},
-        new Categoria() { CategoriaId = 4, Nome = "Mouses"},
-        new Categoria() { CategoriaId = 5, Nome = "Desktops"}
-};
-        // GET: Categoria
-        public ActionResult Index()
+        public class CategoriasController : Controller
         {
-            return View(categorias);
-        }
-        // GET: Create
-        public ActionResult Create()
-        {
-            return View();
+            private EFContext context = new EFContext();
+            // GET: Fabricantes
+            public ActionResult Index()
+            {
+                return View(context.Categorias.OrderBy(c => c.Nome));
+            }
+            // GET: Categorias
+            public ActionResult Create()
+            {
+                return View();
+            }
+            // POST: Create
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Create(Categoria categorias)
+            {
+                context.Categorias.Add(categorias);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            // GET: Categorias/Edit/5
+            public ActionResult Edit(long? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Categoria categoria = context.Categorias.Find(id);
+                if (categoria == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(categoria);
+            }
+            // POST: Categorias/Edit/5
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Edit(Categoria categoria)
+            {
+                if (ModelState.IsValid)
+                {
+                    context.Entry(categoria).State = EntityState.Modified;
+                    context.SaveChanges();
+                    TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi alterada";
+                    return RedirectToAction("Index");
+                }
+                return View(categoria);
+            }
+            // GET: Categorias/Details/5
+            public ActionResult Details(long? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Categoria categoria = context.Categorias.Find(id);
+                if (categoria == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(categoria);
+            }
+            // GET: Categorias/Delete/5
+            public ActionResult Delete(long? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Categoria categoria = context.Categorias.Find(id);
+                if (categoria == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(categoria);
+            }
+            // POST: Categorias/Delete/5
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Delete(long id)
+            {
+                Categoria categoria = context.Categorias.Find(id);
+                context.Categorias.Remove(categoria);
+                context.SaveChanges();
+                TempData["Message"] = "Categoria " + categoria.Nome.ToUpper() + " foi removida";
+                return RedirectToAction("Index");
+            }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Categoria categoria)
-        {
-            categorias.Add(categoria);
-            categoria.CategoriaId = categorias.Select(m => m.CategoriaId).Max() + 1;
-            return RedirectToAction("Index");
-        }
-        public ActionResult Edit(long id)
-        {
-            return View(categorias.Where(m => m.CategoriaId == id).First());
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Categoria categoria)
-        {
-            categorias.Remove(
-            categorias.Where(c => c.CategoriaId == categoria.CategoriaId).First());
-            categorias.Add(categoria);
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Details(long id)
-        {
-            return View(categorias.Where(m => m.CategoriaId == id).First());
-        }
-        public ActionResult Delete(long id)
-        {
-            return View(categorias.Where(m => m.CategoriaId == id).First());
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(Categoria categoria)
-        {
-            categorias.Remove(
-            categorias.Where(c => c.CategoriaId == categoria.CategoriaId).First());
-            return RedirectToAction("Index");
-        }
     }
-}

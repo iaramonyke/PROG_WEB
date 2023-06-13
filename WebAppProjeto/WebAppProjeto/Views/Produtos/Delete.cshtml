@@ -1,5 +1,4 @@
-﻿@model WebAppProjeto.Models.Produto
-
+﻿﻿@model WebAppProjeto.Models.Produto
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Visualizando detalhes do PRODUTO a ser removido";
@@ -52,7 +51,7 @@
     <div class="panel-footer panel-info">
         <a href="#" class="btn btn-info" data-toggle="modal"
            data-target="#deleteConfirmationModal">Remover</a>
-        @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Retornar para a listagem", "Index", null, new { @class = "btn btn-warning" })
     </div>
 </div>
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-hidden="true">

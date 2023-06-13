@@ -1,17 +1,14 @@
-﻿@model WebAppProjeto.Models.Produto
-
-vazia e copie o código listado a seguir.
-@model Projeto01.Models.Produto
+﻿﻿@model WebAppProjeto.Models.Produto
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Visualizando os dados de um PRODUTO";
+    ViewBag.Title = "Visualizando os dados de um Produto";
 }
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Alteração dos dados de um PRODUTO
+            Alteração dos dados de um Produto
         </div>
         <div class="panel-body">
             <div class="form-horizontal">
@@ -57,7 +54,7 @@ vazia e copie o código listado a seguir.
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Gravar alterações" class="btn btn-default" />
+                        <input type="submit" value="Gravar alterações" class="btn btn-success" />
                     </div>
                 </div>
             </div>
@@ -71,4 +68,4 @@ vazia e copie o código listado a seguir.
             $('#liProdutos').addClass("active");
         });
     </script>
-    }
+}

@@ -12,15 +12,41 @@ namespace WebAppProjeto.Controllers
     public class ProdutosController : Controller
     {
         private EFContext context = new EFContext();
+        // GET: Produtos
+        public ActionResult Index()
+        {
+            var produtos = context.Produtos.Include(c => c.Categoria).Include(f => f.Fabricante).
+            OrderBy(n => n.Nome);
+            return View(produtos);
+        }
+
+        // GET: Produtos/Details/5
+        public ActionResult Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Produto produto = context.Produtos.Where(p => p.ProdutoId == id).
+            Include(c => c.Categoria).Include(f => f.Fabricante).First();
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(produto);
+        }
+
         // GET: Produtos/Create
         public ActionResult Create()
         {
             ViewBag.CategoriaId = new SelectList(context.Categorias.OrderBy(b => b.Nome),
-            "CategoriaId", "Nome");
+                "CategoriaId", "Nome");
             ViewBag.FabricanteId = new SelectList(context.Fabricantes.OrderBy(b => b.Nome),
-            "FabricanteId", "Nome");
+                "FabricanteId", "Nome");
+
             return View();
         }
+
         // POST: Produtos/Create
         [HttpPost]
         public ActionResult Create(Produto produto)
@@ -77,22 +103,7 @@ namespace WebAppProjeto.Controllers
             }
         }
 
-        // GET: Produtos/Details/5
-        public ActionResult Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Produto produto = context.Produtos.Where(p => p.ProdutoId == id).
-            Include(c => c.Categoria).Include(f => f.Fabricante).First();
-            if (produto == null)
-            {
-                return HttpNotFound();
-            }
-            return View(produto);
-        }
-        // GET delete
+        // GET: Produtos/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -107,6 +118,7 @@ namespace WebAppProjeto.Controllers
             }
             return View(produto);
         }
+
         // POST: Produtos/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

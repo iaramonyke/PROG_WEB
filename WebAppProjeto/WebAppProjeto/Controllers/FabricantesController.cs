@@ -8,17 +8,20 @@ namespace WebAppProjeto.Controllers
 {
     public class FabricantesController : Controller
     {
-        // GET: Fabricantes
         private EFContext context = new EFContext();
+
+        // GET: Fabricantes
         public ActionResult Index()
         {
             return View(context.Fabricantes.OrderBy(c => c.Nome));
         }
+
         // GET: Create
         public ActionResult Create()
         {
             return View();
         }
+
         // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -28,6 +31,7 @@ namespace WebAppProjeto.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
         // GET: Fabricantes/Edit/5
         public ActionResult Edit(long? id)
         {
@@ -42,6 +46,7 @@ namespace WebAppProjeto.Controllers
             }
             return View(fabricante);
         }
+
         // POST: Fabricantes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -51,11 +56,11 @@ namespace WebAppProjeto.Controllers
             {
                 context.Entry(fabricante).State = EntityState.Modified;
                 context.SaveChanges();
-                TempData["Message"] = "Fabricante " + fabricante.Nome.ToUpper() + " foi alterado";
                 return RedirectToAction("Index");
             }
             return View(fabricante);
         }
+
         // GET: Fabricantes/Details/5
         public ActionResult Details(long? id)
         {
@@ -64,12 +69,14 @@ namespace WebAppProjeto.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Fabricante fabricante = context.Fabricantes.Where(f => f.FabricanteId == id).
-            Include("Produtos.Categoria").First();
+                Include("Produtos.Categoria").First();
+            if (fabricante == null)
             {
                 return HttpNotFound();
             }
             return View(fabricante);
         }
+
         // GET: Fabricantes/Delete/5
         public ActionResult Delete(long? id)
         {
@@ -84,6 +91,7 @@ namespace WebAppProjeto.Controllers
             }
             return View(fabricante);
         }
+
         // POST: Fabricantes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -92,7 +100,7 @@ namespace WebAppProjeto.Controllers
             Fabricante fabricante = context.Fabricantes.Find(id);
             context.Fabricantes.Remove(fabricante);
             context.SaveChanges();
-            TempData["Message"] = "Fabricante " + fabricante.Nome.ToUpper() + " foi removido";
+            TempData["Message"] = "Fabricante \"" + fabricante.Nome.ToUpper() + "\" foi removido";
             return RedirectToAction("Index");
         }
     }

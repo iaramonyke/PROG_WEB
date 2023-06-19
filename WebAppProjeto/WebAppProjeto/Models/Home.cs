@@ -7,8 +7,9 @@ namespace WebAppProjeto.Models
 {
     public class Home
     {
-        public IOrderedQueryable<Fabricante> fabricantes;
-        public IOrderedQueryable<Categoria> categorias;
-
+        public IQueryable<Fabricante> fabricantes;
+        public IQueryable<Categoria> categorias;
+        public IQueryable<Produto> produtos;
+        public string filtro;
     }
 }
